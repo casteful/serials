@@ -8,7 +8,7 @@ app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'db.sqlite')
 #app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://serials_5992:CGNhXm3JqnuNWkIGCbqbGcnkk_UN5LfAf6Sg3YlPFRcOgb__Muk3oRmLM2YGT6ip@serials-5992.postgresql.c.osc-fr1.scalingo-dbs.com:35038/serials_5992?sslmode=prefer'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://serials_ad56_user:9dLB90JwPGdlT0vSRBHVLNM5fGAEsYpY@dpg-d3eq87ruibrs73cg4sog-a.oregon-postgres.render.com/serials_ad56'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
