@@ -8,7 +8,7 @@ app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'db.sqlite')
 #app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://serials_ad56_user:9dLB90JwPGdlT0vSRBHVLNM5fGAEsYpY@dpg-d3eq87ruibrs73cg4sog-a.oregon-postgres.render.com/serials_ad56'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://tsdbadmin:ukcdbutidhhi789n@m05yiq2v35.ayjlxo1mqb.tsdb.cloud.timescale.com:30404/tsdb?sslmode=require'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
