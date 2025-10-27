@@ -45,7 +45,7 @@ def add():
 
     else:
         moviesToWatch = MovieToWatch.query.order_by(MovieToWatch.id.desc()).all()
-        return render_template('add.html', movies=moviesToWatch)
+        return render_template('add.html', moviesToWatch=moviesToWatch)
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
@@ -157,6 +157,3 @@ def randomMovie():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-with app.app_context():
-    db.create_all()
