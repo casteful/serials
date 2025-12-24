@@ -13,19 +13,17 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 class MovieBase(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     content = db.Column(db.String(200), nullable=False)
     dima_rate = db.Column(db.Integer, default=0)
     anas_rate = db.Column(db.Integer, default=0)
-    date_created = db.Column(db.String(200), nullable=False)
 
     def __repr__(self):
         return '<Task %r>' % self.id
 
 class MovieToWatch(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     next_movie = db.Column(db.String(200), nullable=False)
-    date_created = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
         return '<Task %r>' % self.id
@@ -54,7 +52,6 @@ def index():
         movie_content = request.form['content']
         movie_dima_rate = request.form['dima_rate']
         movie_anas_rate = request.form['anas_rate']
-        movie_date_created = request.form['date_created']
 
         if movie_content == '':
             return 'Помилка: заголовок не повинен бути порожнiм.'
@@ -73,7 +70,7 @@ def index():
         if int(movie_anas_rate) < 0:
             movie_anas_rate = '0'
 
-        new_movie = MovieBase(content=movie_content, dima_rate=movie_dima_rate, anas_rate=movie_anas_rate, date_created=movie_date_created)
+        new_movie = MovieBase(content=movie_content, dima_rate=movie_dima_rate, anas_rate=movie_anas_rate)
 
         try:
             db.session.add(new_movie)
@@ -118,7 +115,6 @@ def update(id):
         movie.content = request.form['content']
         movie.dima_rate = request.form['dima_rate']
         movie.anas_rate = request.form['anas_rate']
-        movie.date_created = request.form['date_created']
 
         if movie.content == '':
             return 'Помилка: заголовок не повинен бути порожнiм.'
@@ -148,7 +144,7 @@ def update(id):
 
 @app.route('/random')
 def randomMovie():
-    moviesToWatch = MovieToWatch.query.order_by(MovieToWatch.date_created.desc()).all()
+    moviesToWatch = MovieToWatch.query.order_by(MovieToWatch.id.desc()).all()
     if len(moviesToWatch) > 0:
         movie = random.choice(moviesToWatch)
         return render_template('random.html', movie=movie)
@@ -157,3 +153,6 @@ def randomMovie():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+with app.app_context():
+    db.create_all()

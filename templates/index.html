@@ -8,7 +8,7 @@
 <div class="container-fluid">
     <h1>Фiльмы та серіали<small class="text-muted">
         <button type="button" style="border:none;" class="btn btn-primary text-muted bg-transparent" data-toggle="modal" data-target="#exampleModal1">
-                ver:2.3
+                ver:2.4
         </button>
         <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -21,13 +21,24 @@
                     </div>
                     <div class="modal-body">
 						<h5>
+                            <dt>Version 2.4</dt>
+                        </h5>
+                        <h6>
+                            <dd>
+                                <ul>                               
+									<li>Базу даних перенесено на Aiven.io.</li>
+									<li>Репозиторій перенесено на Vercel.com.</li>
+                                </ul>
+                            </dd>
+                        </h6>
+                        <h5>
                             <dt>Version 2.3</dt>
                         </h5>
                         <h6>
                             <dd>
-                                <ul>
-									<li>Базу даних перенесено на Aiven.io.</li>
-									<li>Репозиторій перенесено на Vercel.com.</li>
+                                <ul>                               
+                                    <li>Виправлено конфлікти при додаванні ID.</li>
+                                    <li>Прибрано день перегляду фільму чи серіалу.</li>
                                 </ul>
                             </dd>
                         </h6>
@@ -123,10 +134,6 @@
                                 <input type="number" class="form-control" name="dima_rate" id="dima_rate" value="0" placeholder="Оцiнка Дмитра">
                             </div>
                             <div class="col" align="center">
-                            	<b>Додано</b>
-                                <input type="date" class="form-control" name="date_created" id="date_created" placeholder="date_created">
-                            </div>
-                            <div class="col" align="center">
                             	<b>.</b>
                                 <input type="submit" class="form-control" value="Додати" style="background-color:cornflowerblue; color:white;">
                             </div>
@@ -142,7 +149,6 @@
                         <th onclick="sortTable(3)">Оцiнка Дмитра</th>
                         <th onclick="sortTable(4)">Середня оцінка</th>
                         <th onclick="sortTable(5)">Загальна оцінка</th>
-                        <th>Додано</th>
                         <th>Опції</th>
                     </tr>
                     {% for movie in movies %}
@@ -153,7 +159,6 @@
                         <td class="rate">{{ movie.dima_rate }}</td>
                         <td class="average">–</td>
                         <td>{{ movie.anas_rate + movie.dima_rate }}</td>
-                        <td>{{ movie.date_created }}</td>
                         <td>
                             <a href="/update/{{movie.id}}" class="btn btn-secondary active btn-sm" role="button" aria-pressed="true">Редагувати</a>                           
                         </td>
